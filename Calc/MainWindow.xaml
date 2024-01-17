@@ -10,6 +10,9 @@
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="64"/>
             <Setter Property="Margin" Value="1"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>            
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="64"/>
