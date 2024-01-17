@@ -16,6 +16,9 @@ namespace Calc
         [ObservableProperty]
         private string? _number;
 
+        [ObservableProperty]
+        private string? _formula;
+
         [RelayCommand]
         private void ClearNumber()
         {
@@ -30,6 +33,7 @@ namespace Calc
             Total = 0;
             Number = "";
             Operation = Constants.EMPTY;
+            Formula = "";
         }
 
         [RelayCommand]
@@ -37,6 +41,7 @@ namespace Calc
         {
             var num = Convert.ToInt32(numStr);
             Number = _calcModel.EnterNumber(num).ToString();
+            Formula += numStr;
         }
 
         [RelayCommand]
@@ -45,6 +50,7 @@ namespace Calc
             Operation = op;
             Number = "";
             Total = _calcModel.EnterOperation(op);
+            Formula += op;
         }
 
         public ViewModel()
