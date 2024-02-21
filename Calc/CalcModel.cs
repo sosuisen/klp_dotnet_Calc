@@ -6,42 +6,28 @@ namespace Calc
 
         public int Total { get; set; } = 0;
 
-        public int Number { get; set; } = 0;
-
-        public void ClearNumber()
-        {
-            Number = 0;
-        }
-
         public void Clear()
         {
             Total = 0;
-            Number = 0;
             Operation = "";
         }
 
-        public int EnterNumber(int num)
-        {
-            Number = Number * 10 + num;
-            return Number;
-        }
-
-        public int EnterOperation(string op)
+        public int EnterOperation(string op, int num)
         {
             switch (Operation)
             {
                 case Constants.EMPTY:
                     // First operation is just to set the total
-                    Total = Number;
+                    Total = num;
                     break;
                 case Constants.PLUS:
-                    Total += Number;
+                    Total += num;
                     break;
                 case Constants.MINUS:
-                    Total -= Number;
+                    Total -= num;
                     break;
                 case Constants.MULTIPLY:
-                    Total *= Number;
+                    Total *= num;
                     break;
                 case Constants.EQUAL:
                     // Do nothing
@@ -50,9 +36,6 @@ namespace Calc
 
             // Set the next operation
             Operation = op;
-
-            // Reset the current number
-            Number = 0;
 
             return Total;
         }

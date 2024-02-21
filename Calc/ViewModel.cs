@@ -14,13 +14,12 @@ namespace Calc
         private int _total;
 
         [ObservableProperty]
-        private string? _number;
+        private int _currentInput;
 
         [RelayCommand]
         private void ClearNumber()
         {
-            _calcModel.ClearNumber();
-            Number = "";
+            CurrentInput = 0;
         }
 
         [RelayCommand]
@@ -28,31 +27,30 @@ namespace Calc
         {
             _calcModel.Clear();
             Total = 0;
-            Number = "";
+            CurrentInput = 0;
             Operation = Constants.EMPTY;
         }
 
         [RelayCommand]
         private void EnterNumber(string numStr)
         {
-            var num = Convert.ToInt32(numStr);
-            Number = _calcModel.EnterNumber(num).ToString();
+            CurrentInput = CurrentInput * 10 + Convert.ToInt32(numStr);
         }
 
         [RelayCommand]
         private void EnterOperation(string op)
         {
             Operation = op;
-            Number = "";
-            Total = _calcModel.EnterOperation(op);
+            Total = _calcModel.EnterOperation(op, Convert.ToInt32(CurrentInput));
+            CurrentInput = 0;
         }
 
         public ViewModel()
         {
             _calcModel = new CalcModel();
-            _operation = _calcModel.Operation;
-            _total = _calcModel.Total;
-            _number = _calcModel.Number.ToString();
+            Operation = _calcModel.Operation;
+            Total = _calcModel.Total;
+            CurrentInput = 0;
         }
     }
 }
