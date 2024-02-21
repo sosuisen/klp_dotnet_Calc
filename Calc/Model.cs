@@ -16,7 +16,7 @@ namespace Calc
             switch (_prevOperator)
             {
                 case Operator.Empty:
-                    // First operation is just to set the total
+                    // First operation is just to set the value
                     _value = num;
                     break;
                 case Operator.Plus:
