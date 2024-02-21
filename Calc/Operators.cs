@@ -1,3 +1,6 @@
+using System.Globalization;
+using System.Windows.Data;
+
 namespace Calc
 {
     public enum Operator
@@ -9,11 +12,11 @@ namespace Calc
         Empty
     }
 
-    public static class OperatorExtensions
+    public class OperatorToSymbolConverter : IValueConverter
     {
-        public static string ToSymbol(this Operator op)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (op)
+            switch (value)
             {
                 case Operator.Plus:
                     return "+";
@@ -28,6 +31,12 @@ namespace Calc
                 default:
                     return "";
             }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            // 今回は逆変換は不要です。
+            throw new NotImplementedException();
         }
     }
 }

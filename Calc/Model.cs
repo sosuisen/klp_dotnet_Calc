@@ -3,17 +3,15 @@ namespace Calc
     internal class Model
     {
         private int _value = 0;
-        private Operator _prevOperator = Operator.Empty;
 
         public void Clear()
         {
             _value = 0;
-            _prevOperator = Operator.Empty;
         }
 
-        public int Calc(int num, Operator nextOp)
+        public int Calc(Operator op, int num)
         {
-            switch (_prevOperator)
+            switch (op)
             {
                 case Operator.Empty:
                     // First operation is just to set the value
@@ -32,7 +30,6 @@ namespace Calc
                     // Do nothing
                     break;
             }
-            _prevOperator = nextOp;
             return _value;
         }
     }

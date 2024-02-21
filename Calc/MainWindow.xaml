@@ -10,6 +10,7 @@
         <local:ViewModel/>
     </Window.DataContext>
     <Window.Resources>
+        <local:OperatorToSymbolConverter x:Key="OperatorToSymbolConverter"/>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="64"/>
             <Setter Property="Margin" Value="1"/>
@@ -53,6 +54,6 @@
         <Button Grid.Row="5" Grid.Column="3" Content="=" Command="{Binding EnterOperatorCommand}" CommandParameter="{x:Static local:Operator.Equal}"/>
         <TextBlock Text="{Binding Result}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="LightPink"/>
         <TextBlock Text="{Binding CurrentInput}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Foreground="Red" Background="LightGreen"/>
-        <TextBlock Text="{Binding NextOperator}" Grid.Row="1" Grid.Column="0" Foreground="Red" Background="LightYellow"/>
+        <TextBlock Text="{Binding NextOperator, Converter={StaticResource OperatorToSymbolConverter}}" Grid.Row="1" Grid.Column="0" Foreground="Red" Background="LightYellow"/>
     </Grid>
 </Window>
