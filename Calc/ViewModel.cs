@@ -8,10 +8,10 @@ namespace Calc
         private Model _model;
 
         [ObservableProperty]
-        private string _currentOperator = "";
+        private string _nextOperator = "";
 
         [ObservableProperty]
-        private int _total = 0;
+        private int _result = 0;
 
         [ObservableProperty]
         private int _currentInput = 0;
@@ -26,8 +26,8 @@ namespace Calc
         private void Clear()
         {
             _model.Clear();
-            CurrentOperator = "";
-            Total = 0;
+            NextOperator = "";
+            Result = 0;
             CurrentInput = 0;
         }
 
@@ -38,10 +38,10 @@ namespace Calc
         }
 
         [RelayCommand]
-        private void EnterOperation(Operator op)
+        private void EnterOperator(Operator nextOp)
         {
-            CurrentOperator = op.ToSymbol();
-            Total = _model.EnterOperation(CurrentInput, op);
+            Result = _model.Calc(CurrentInput, nextOp);
+            NextOperator = nextOp.ToSymbol();
             CurrentInput = 0;
         }
 
