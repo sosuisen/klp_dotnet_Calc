@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Calc
 {
-    internal partial class ViewModel: ObservableObject
+    internal partial class ViewModel : ObservableObject
     {
         private Model _model;
 
