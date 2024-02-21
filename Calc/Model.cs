@@ -1,41 +1,41 @@
 namespace Calc
 {
-    internal class CalcModel
+    internal class Model
     {
-        public string? Operation { get; set; } = Constants.EMPTY;
+        public Operator CurrentOperator { get; set; } = Operator.Empty;
 
         public int Total { get; set; } = 0;
 
         public void Clear()
         {
+            CurrentOperator = Operator.Empty;
             Total = 0;
-            Operation = "";
         }
 
-        public int EnterOperation(string op, int num)
+        public int EnterOperation(Operator op, int num)
         {
-            switch (Operation)
+            switch (CurrentOperator)
             {
-                case Constants.EMPTY:
+                case Operator.Empty:
                     // First operation is just to set the total
                     Total = num;
                     break;
-                case Constants.PLUS:
+                case Operator.Plus:
                     Total += num;
                     break;
-                case Constants.MINUS:
+                case Operator.Minus:
                     Total -= num;
                     break;
-                case Constants.MULTIPLY:
+                case Operator.Multiply:
                     Total *= num;
                     break;
-                case Constants.EQUAL:
+                case Operator.Equal:
                     // Do nothing
                     break;
             }
 
             // Set the next operation
-            Operation = op;
+            CurrentOperator = op;
 
             return Total;
         }

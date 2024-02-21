@@ -5,16 +5,16 @@ namespace Calc
 {
     internal partial class ViewModel: ObservableObject
     {
-        private CalcModel _calcModel;
+        private Model _model;
 
         [ObservableProperty]
-        private string? _operation;
+        private string _currentOperator = "";
 
         [ObservableProperty]
-        private int _total;
+        private int _total = 0;
 
         [ObservableProperty]
-        private int _currentInput;
+        private int _currentInput = 0;
 
         [RelayCommand]
         private void ClearNumber()
@@ -25,10 +25,10 @@ namespace Calc
         [RelayCommand]
         private void Clear()
         {
-            _calcModel.Clear();
+            _model.Clear();
+            CurrentOperator = "";
             Total = 0;
             CurrentInput = 0;
-            Operation = Constants.EMPTY;
         }
 
         [RelayCommand]
@@ -38,19 +38,16 @@ namespace Calc
         }
 
         [RelayCommand]
-        private void EnterOperation(string op)
+        private void EnterOperation(Operator op)
         {
-            Operation = op;
-            Total = _calcModel.EnterOperation(op, Convert.ToInt32(CurrentInput));
+            CurrentOperator = op.ToSymbol();
+            Total = _model.EnterOperation(op, CurrentInput);
             CurrentInput = 0;
         }
 
         public ViewModel()
         {
-            _calcModel = new CalcModel();
-            Operation = _calcModel.Operation;
-            Total = _calcModel.Total;
-            CurrentInput = 0;
+            _model = new Model();
         }
     }
 }
