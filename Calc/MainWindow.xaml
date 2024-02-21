@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Calc"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="420">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="64"/>

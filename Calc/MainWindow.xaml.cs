@@ -19,7 +19,6 @@ namespace Calc
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext  = new ViewModel();
         }
     }
 }
