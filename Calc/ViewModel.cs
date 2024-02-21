@@ -41,7 +41,7 @@ namespace Calc
         private void EnterOperation(Operator op)
         {
             CurrentOperator = op.ToSymbol();
-            Total = _model.EnterOperation(op, CurrentInput);
+            Total = _model.EnterOperation(CurrentInput, op);
             CurrentInput = 0;
         }
 

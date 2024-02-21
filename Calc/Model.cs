@@ -12,7 +12,7 @@ namespace Calc
             Total = 0;
         }
 
-        public int EnterOperation(Operator op, int num)
+        public int EnterOperation(int num, Operator nextOp)
         {
             switch (CurrentOperator)
             {
@@ -35,7 +35,7 @@ namespace Calc
             }
 
             // Set the next operation
-            CurrentOperator = op;
+            CurrentOperator = nextOp;
 
             return Total;
         }
